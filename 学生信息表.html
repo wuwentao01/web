@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        .box1 {
+            display: flex;
+            width: 600px;
+            height: 20px;
+            margin: 0 auto;
+            /* background-color: pink; */
+            justify-content: space-around;
+        }
+        .box1 input {
+            width: 50px;
+            height: 15px;
+            border-radius: 3px;
+        }
+        button {
+            width: 70px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: blue;
+        }
+        select {
+            width: 50px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        table {
+            width: 600px;
+            color: black;
+            border: 1px solid  skyblue;
+            background-color: skyblue;
+            margin: 0 auto;
+        }
+        th {
+            font-weight: normal;
+            width: 100px;
+            height: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>新增学员</h2>
+    <form action="" class="box1" autocomplete="off">
+        姓名<input type="text" name="uname" id="" class="uname">
+        年龄<input type="text" name="age" id="" class="age">
+        性别<select name="gender" id="" class="gender">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        薪资<input type="text" name="salary" id="" class="salary">
+        就业城市<select name="city" id="" class="city">
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+        </select>
+        <button>录入</button>
+    </form>
+    <h2>就业榜</h2>
+    <table border="1" cellspacing="0">
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>薪资</th>
+                <th>就业城市</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr> -->
+        </tbody>
+    </table>
+    <script>
+        // 构造空数组
+        const arr =[]
+        // 获取表单对象
+        const form = document.querySelector('form')
+        const uname = document.querySelector('.uname')
+        const age = document.querySelector('.age')
+        const gender = document.querySelector('.gender')
+        const city = document.querySelector('.city')
+        const salary = document.querySelector('.salary')
+        const tbody = document.querySelector('tbody')
+        const items =document.querySelectorAll('[name]')
+        // console.log(tbody)
+        // console.log(form)
+        form.addEventListener('submit',function(e) {
+            // 阻止表单默认跳转
+            e.preventDefault()
+            // console.log(11)
+            // 遍历
+            for(let i =0;i<items.length;i++) {
+                if(items[i].value==='') {
+                    // return 中断函数
+                    return alert('请完整输入')
+                }
+            }
+            // 创建新的对象
+            const obj = {
+                stuID:arr.length +1,
+                uname:uname.value,
+                age:age.value,
+                gender:gender.value,
+                salary:salary.value,
+                city:city.value,
+            }
+            // console.log(obj)
+            // 追加数组
+            arr.push(obj)
+            // 提交以后清空数据
+            this.reset()
+            // 调用函数
+            xr()
+        })
+        // 渲染函数
+        function xr() {
+            // 遍历数组
+          // 清空上一组渲染数据
+          tbody.innerHTML=''
+            for(let i=0;i<arr.length;i++) {
+                // 生成tr
+             const tr = document.createElement('tr')
+                // console.log(tr)
+            tr.innerHTML=`
+            <td>${arr[i].stuID}</td>
+            <td>${arr[i].uname}</td>
+            <td>${arr[i].age}</td>
+            <td>${arr[i].gender}</td>
+            <td>${arr[i].salary}</td>
+            <td>${arr[i].city}</td>
+            <td>
+                <a href="" data-id=${i}>删除</a>
+            </td>
+                `
+                 // 追加父元素
+            tbody.appendChild(tr)
+            }
+        }
+
+        // 删除模块
+        tbody.addEventListener('click',function(e) {
+            // 阻止默认跳转
+            e.preventDefault()
+            if(e.target.tagName==='A') {
+                // console.log(e.target.dataset.id)
+                // 获得序号,从序号位置开始删1个
+                arr.splice(e.target.dataset.id,1)
+                xr()
+            }
+        })
+    </script>
+</body>
+</html>
