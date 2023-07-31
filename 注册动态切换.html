@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 500px;
+            margin: 100px auto;
+            background-color: skyblue;
+        }
+        .item1,
+        .item2 {
+            position: absolute;
+            width: 250px;
+            background-color: yellowgreen;
+            border: 1px solid yellowgreen;
+            border-radius: 5px;
+            box-shadow: 15px 15px 15px #ccc;
+        }
+        input {
+            height: 30px;
+            outline: none;
+            border: none;
+            margin-top: 25px;
+            margin-left: 40px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+        }
+        .item1 {
+            top: 0;
+            left: 0;
+        }
+        .item2 {
+            top: 0;
+            right: 0;
+        }
+        button {
+            width: 70px;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            margin-left: 80px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 173px;
+            border-radius: 5px;
+            z-index: 999;
+            background-color: skyblue;
+        }
+        .cover span {
+            position: absolute;
+            top: 65px;
+            left: 100px;
+            text-align: center;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            color: powderblue;
+            opacity: .5;
+            cursor: pointer;
+            transition: all .3s;
+            background-color: white;
+        }
+        .cover span:nth-child(2) {
+            display: none;
+        }
+        span:hover {
+            transform: translateY(-5px);
+            opacity: .5;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form action="" class="item1">
+            <input type="text" placeholder="用户名">
+            <input type="password" placeholder="密码">
+            <button>登录</button>
+        </form>
+        <div class="cover">
+            <span>&gt;</span>
+            <span>&lt;</span>
+        </div>
+        <form action="" class="item2">
+            <input type="text" placeholder="输入密码">
+            <input type="password" placeholder="再次确认密码">
+            <button>注册</button>
+        </form>
+    </div>
+    <script>
+        var spans =document.querySelectorAll('.cover span')
+        var cover=document.querySelector('.cover')
+        var box=document.querySelector('.box')
+        spans[0].addEventListener('click',function() {
+            move(cover,250,function() {
+                spans[0].style.display='none'
+                spans[1].style.display='block'
+            })
+        })
+        spans[1].addEventListener('click',function() {
+            back(cover,0,function() {
+                spans[1].style.display='none'
+                spans[0].style.display='block'
+            })
+        })
+        function move(obj,target,callback) {
+            // 清除以前定时器
+            clearInterval(obj.timer)
+            obj.timer=setInterval(function(){
+                // 步长公式
+                var step =(target-obj.offsetLeft)/10
+              step =  step>0?Math.ceil(step) : Math.floor(step)
+                if(obj.offsetLeft>=target) {
+                clearInterval(obj.timer)
+                // 回调函数
+                if(callback) {
+                    callback()
+                }
+                }
+                obj.style.left=obj.offsetLeft+step+'px'
+            },30)
+        }
+        function back(obj,target,callback) {
+            // 清除以前定时器
+            clearInterval(obj.timer)
+            obj.timer=setInterval(function(){
+                // 步长公式
+                var step =(target-obj.offsetLeft)/10
+              step =  step>0?Math.ceil(step) : Math.floor(step)
+                if(obj.offsetLeft<=target) {
+                clearInterval(obj.timer)
+                // 回调函数
+                if(callback) {
+                    callback()
+                }
+                }
+                obj.style.left=obj.offsetLeft+step+'px'
+            },30)
+        }
+    </script>
+</body>
+</html>
