@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            /* background-color: pink; */
+        }
+        .leftbox {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            /* background-color: yellow; */
+        }
+        .leftbox .black {
+            z-index: 999;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            display: none;
+            background-color:black;
+            opacity: .5;
+        }
+        .leftbox img {
+            width:100%; 
+            height: 100%; 
+        }
+        .largebox {
+            position:absolute;
+            top: 50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            z-index: 999;
+            display: none;
+            background: url(sc.html/3.webp) no-repeat;
+            background-size: 400px 400px;
+            background-color: pink;
+        }
+        .rightbox {
+            position: absolute;
+            top: 50px;
+            right: 100px;
+            width: 50px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .rightbox li {
+            width: 50px;
+            height: 50px;
+            list-style: none;
+            /* margin-bottom: 25px; */
+            background-color: #fff;
+        }
+        .rightbox li img {
+            width: 100%;
+            height: 100%;
+        }
+        .active {
+            border: 2px solid palegreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="leftbox">
+            <div class="black"></div>
+            <img src="sc.html/3.webp" alt="">
+        </div>
+        <div class="largebox"></div>
+        <div class="rightbox">
+            <ul>
+                <li class="active"><img src="sc.html/3.webp" alt=""></li>
+                <li><img src="sc.html/5.webp" alt=""></li>
+                <li><img src="sc.html/7.webp" alt=""></li>
+                <li><img src="sc.html/7.webp" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const ul = document.querySelector('.rightbox ul')
+        const leftbox=document.querySelector('.leftbox')
+        // 大盒子与小盒子图片地址一致
+        ul.addEventListener('mouseover',function(e) {
+            if(e.target.tagName='IMG') {
+                // console.log(111)
+               document.querySelector('.rightbox .active').classList.remove('active')
+               e.target.classList.add('active')
+               leftbox.querySelector('img').src = e.target.src
+               largebox.style.background=`url(${e.target.src})`
+            }
+        })
+
+        const largebox = document.querySelector('.largebox')
+        // console.log(largebox)
+        leftbox.addEventListener('mouseenter',show)
+        leftbox.addEventListener('mouseleave',hidden)
+        let timeId = 0
+        function show() {
+            // 先清除定时器
+            clearTimeout(timeId)
+            largebox.style.display='block'
+        }
+        function hidden() {
+        timeId = setTimeout(function() {
+                largebox.style.display='none'
+            },200)
+        }
+        // 大盒子显示隐藏和显示
+        largebox.addEventListener('mouseenter',show)
+        largebox.addEventListener('mouseleave',hidden)
+
+
+        const black = document.querySelector('.leftbox .black')
+        // 经过大盒子显示遮罩层
+        leftbox.addEventListener('mouseenter',function() {
+            black.style.display='block'
+        })
+        leftbox.addEventListener('mouseleave',function() {
+            black.style.display='none'
+        })
+
+        leftbox.addEventListener('mousemove',function(e) {
+            let x = e.pageX-leftbox.getBoundingClientRect().left
+            let y = e.pageY-leftbox.getBoundingClientRect().top-document.documentElement.scrollTop
+            if(x>=0&&x<=200&&y>=0&&y<=200) {
+                let mx = 0
+                let my = 0
+                if(x<50) mx=0
+                if(x>=50&&x<=150)mx = x-50
+                if(x>150) mx=100
+
+                if(y<50) my=0
+                if(y>=50&&y<=150)my = y-50
+                if(y>150) my=100
+
+                black.style.left=mx +'px'
+                black.style.top=my +'px'
+
+                largebox.style.backgroundPositionX=-2*mx +'px'
+                largebox.style.backgroundPositionY=-2*my +'px'
+            }
+        })
+    </script>
+</body>
+</html>
