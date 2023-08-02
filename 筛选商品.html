@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .filter {
+            margin: 200px  0px  50px 500px;
+        }
+        a {
+            display: inline-block;
+            width: 150px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid black;
+            text-decoration: none;
+            color: black;
+        }
+        .filter a:active,
+        .filter a:focus {
+            background-color: #05943c;
+            color: #fff;
+        }
+        .list {
+            width: 630px;
+            display: flex;
+            justify-content: space-around;
+            /* background-color: pink; */
+            margin: 10px 500px;
+            text-align: center;
+        }
+        .item {
+            width: 200px;
+            height: 200px;
+            margin: 5px;
+            /* background-color: gray; */
+        }
+        .item img {
+            width: 100%;
+            height: 130px;
+        }
+        .price {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter">
+        <a   href="javascript:;">全部区间</a>
+       <a  data-index='1'  href="javascript:;">100以内</a>
+       <a  data-index='2'  href="javascript:;">100-300</a> 
+       <a  data-index='3'  href="javascript:;">300以外</a>
+    </div>
+    <div class="list">
+        <!-- <div class="item">
+            <img src="sc.html/GFX 100S.jpg" alt="">
+            <p class="name">12</p>
+            <p class="price">12</p>
+        </div> -->
+    </div>
+    <script>
+        const goodsList = [
+            {
+                id:'4001172',
+                name:'相机1',
+                price:'199.00',
+                picture:'sc.html/GFX100.jpg',
+            },
+            {
+                id:'4001172',
+                name:'相机2',
+                price:'99.00',
+                picture:'sc.html/GFX100.jpg',
+            },
+            {
+                id:'4001172',
+                name:'相机3',
+                price:'299.00',
+                picture:'sc.html/GFX100.jpg',
+            },
+            {
+                id:'4001172',
+                name:'相4',
+                price:'399.00',
+                picture:'sc.html/GFX100.jpg',
+            },
+        ]
+        // 封装
+        function render(arr) {
+            // 声明空字符串
+            let str = ''
+            // 遍历数组
+            arr.forEach(item => {
+                // 解构
+                const {name,price,picture} = item
+                str += `
+            <div class="item">
+                <img src=${picture} alt="">
+                <p class="name">${name}</p>
+                <p class="price">${price}</p>
+            </div>
+                `
+            });
+            document.querySelector('.list').innerHTML = str
+        }
+        render(goodsList)
+
+
+        document.querySelector('.filter').addEventListener('click',e => {
+            // 解构
+            const {tagName,dataset} = e.target
+            if(tagName==='A') {
+                let arr = goodsList
+                if(dataset.index ==='1') {
+                    // console.log(11);
+                 arr = goodsList.filter(item => item.price>0 && item.price<=100)
+                }else if (dataset.index ==='2') {
+                    // console.log(22);
+                    arr = goodsList.filter(item => item.price>=100 && item.price<=300)
+                }else if (dataset.index ==='3') {
+                    // console.log(33);
+                    arr = goodsList.filter(item => item.price>=300)
+                }
+                // 渲染函数
+                render(arr)
+            }
+        })
+    </script>
+</body>
+</html>
