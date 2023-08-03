@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background-color: gainsboro;
+            margin: 100px auto;
+            border: 1px solid bisque;
+            border-radius: 15px;
+        }
+        h4 {
+           width: 200px;
+           height: 50px;
+           margin-left: 100px;
+           text-align: center;
+           line-height: 50px;
+        }
+        .box {
+            position: absolute;
+            top: 50px;
+            left: 80px;
+            /* display: flex;
+            flex-direction: column;
+            justify-content: space-around; */
+        }
+        input {
+            display:block;
+            width: 250px;
+            height: 30px;
+            margin-top: 10px;
+            border: none;
+            text-indent: 2em;
+        }
+         input:focus {
+            outline: none;
+        }
+        .inbox {
+            position: relative;
+            width: 250px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            text-align: right;
+            line-height: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: skyblue;
+        }
+        .inbox2  {
+            width: 250px;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+        }
+        .inbox2 span {
+            width: 220px;
+            height: 30px;
+            font-size: 10px;
+            text-align: left;
+        }
+        .inbox2 input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            margin-top: 7px;
+        }
+        button {
+            width: 250px;
+            height: 30px;
+            background-color: green;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .item {
+            color: red;
+            font-size: 10px;
+        }
+        .kun {
+           color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <h4>注册</h4>
+        <div class="box">
+        <input type="text" name="uname" id="" placeholder="设置用户名" autocomplete="off">
+        <div class="item"></div>
+        <input type="text" name="phone" id=""  placeholder="手机号">
+        <div class="item"></div>
+        <div class="inbox">
+            <input type="text" name="code" id=""  placeholder="短信验证码"><span><a href="">发送验证</a></span>
+        </div>
+        <div class="item"></div>
+        <input type="password" name="password" id="" placeholder="设置密码">
+        <div class="item"></div>
+        <input type="password" name="confirm" id="" placeholder="再次确认密码">
+        <div class="item"></div>
+        <div class="inbox2">
+            <input type="checkbox" name="checkbox" id="">
+            <span>已阅读并同意<a href="">《用户服务协议》</a></span>
+        </div>
+        <button>下一步</button>
+        </div>
+    </form>
+    <script>
+        // 短信验证
+        const a =document.querySelector('.inbox span a')
+        let flag = true
+        a.addEventListener('click',function(e) {
+            // alert(11)
+            // 阻止默认跳转
+            e.preventDefault() 
+            if(flag) {
+                // 立即取反,防止二次点击刷新
+                flag=false  
+                let i = 5
+            a.innerHTML=`0${i}秒后获取`
+            let timerID =setInterval(function(){
+                    i--
+                    a.innerHTML=`0${i}秒后获取`
+                    if(i===0) {
+                        clearInterval(timerID)
+                        a.innerHTML=`重新发送`
+                        // 可以继续点击
+                        flag=true
+                    }
+                },1000)
+            }
+        })
+
+        // 用户名验证
+        const uname=document.querySelector('[name=uname]')
+        // console.log(uname)
+        
+            // console.log(item1)
+        uname.addEventListener('change',verifyName)
+        function verifyName() {
+            const item=uname.nextElementSibling
+            // 定义规则
+            const reg = /^[0-9a-zA-Z-_]{6,10}$/
+            // 匹配验证
+            if(!reg.test(uname.value)) {
+                item.innerHTML='请输入正确的格式'
+                return false
+            }
+            // 输入正确清空
+            item.innerHTML=''
+            return true
+        }
+
+        // 手机号验证
+        const phone=document.querySelector('[name=phone]')
+        // console.log(uname)
+        
+            // console.log(item1)
+            phone.addEventListener('change',verifyphone)
+        function verifyphone() {
+            const item=phone.nextElementSibling
+            // 定义规则
+            const reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
+            // 匹配验证
+            if(!reg.test(phone.value)) {
+                item.innerHTML='请输入正确的格式'
+                return false
+            }
+            // 输入正确清空
+            item.innerHTML=''
+            return true
+        }
+
+        // 验证码验证
+        const code=document.querySelector('[name=code]')
+        // console.log(uname)
+        
+            // console.log(item1)
+            code.addEventListener('change',verifycode)
+        function verifycode() {
+            const item=code.nextElementSibling
+            // 定义规则
+            const reg = /^\d{6}$/
+            // 匹配验证
+            if(!reg.test(code.value)) {
+                item.innerHTML='请输入正确的格式'
+                return false
+            }
+            // 输入正确清空
+            item.innerHTML=''
+            return true
+        }
+
+        // 密码验证
+        // 验证码验证
+        const password=document.querySelector('[name=password]')
+        // console.log(uname)
+        
+            // console.log(item1)
+            password.addEventListener('change',verifypassword)
+        function verifypassword() {
+            const item=password.nextElementSibling
+            // 定义规则
+            const reg = /^\d{6}$/
+            // 匹配验证
+            if(!reg.test(password.value)) {
+                item.innerHTML='请输入正确的格式'
+                return false
+            }
+            // 输入正确清空
+            item.innerHTML=''
+            return true
+        }
+
+        // 重复密码验证
+        const confirm=document.querySelector('[name=confirm]')
+        // console.log(uname)
+        
+            // console.log(item1)
+            confirm.addEventListener('change',verifyconfirm)
+        function verifyconfirm() {
+            const item=confirm.nextElementSibling
+            // 定义规则
+            const reg = /^\d{6}$/
+            // 匹配验证
+            if(confirm.value!==password.value) {
+                item.innerHTML='请输入正确的格式'
+                return false
+            }
+            // 输入正确清空
+            item.innerHTML=''
+            return true
+        }
+
+        // 复选框
+        const checkbox=document.querySelector('[name=checkbox]')
+        // console.log(checkbox);
+        checkbox.addEventListener('click',function() {
+            this.classList.toggle('kun')
+        })
+
+        // 提交表单
+        const button = document.querySelector('button')
+        // console.log(button);
+        button.addEventListener('click',function(e) {
+            e.preventDefault()
+            if(!checkbox.classList.contains('kun')) {
+                return alert('请勾选用户协议')
+            }
+            // 依次判断每一行
+            if(!verifyName()) e.preventDefault()
+            if(!verifyphone()) e.preventDefault()
+            if(!verifycode()) e.preventDefault()
+            if(verifypassword()) e.preventDefault()
+            if(verifyconfirm()) e.preventDefault()
+        })
+    </script>
+</body>
+</html>
