@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            margin-top: 50px;
+        }
+        li {
+            margin-top: 5px;
+            width: 300px;
+            border-bottom: 1px solid black;
+            list-style: none;
+            /* background-color: pink; */
+        }
+        li a {
+            font-size: 10px;
+            float: right;
+            text-decoration: none;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        const text=document.querySelector('textarea')
+        const button =document.querySelector('button')
+        const ul =document.querySelector('ul')
+        button.addEventListener('click',function() {
+            // console.log(11);
+            if(text.value==='') {
+                alert('请输入')
+                return false
+            } else {
+                // 创建元素
+                var li=document.createElement('li')
+                li.innerHTML=text.value+'<a href="javascript:;">删除</a>'
+            }
+            // ul.appendChild(li)
+            // 添加元素
+            ul.insertBefore(li,ul.children[0])
+            var as=document.querySelectorAll('a')
+            for(let i=0;i<as.length;i++) {
+                as[i].addEventListener('click',function(){
+                    // 删除节点
+                    ul.removeChild(this.parentNode)
+                })
+            }
+        })
+    </script>
+</body>
+</html>
