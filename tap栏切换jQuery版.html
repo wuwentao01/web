@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="min.js"></script>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        li {
+            border: 1px solid black;
+            list-style: none;
+            float: left;
+            /* background-color: red; */
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            /* margin-left: 20px; */
+        }
+        .box {
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            /* background-color: pink; */
+        }
+        h4 {
+            font-size: 25px;
+            font-weight: normal;
+            margin:20px 0 0 20px;
+        }
+        .topbox .active {
+            border-color: orangered;
+            color: red;
+            background-color: gray;           
+        }
+        .bottombox {
+            width: 100%;
+            height: 400px;
+            /* background-color: red; */
+        }
+        .bottombox .item {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .bottombox .active {
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="topbox">
+            <h4>颜色切换</h4>
+            <ul class="nav">
+                <li>红色</li>
+                <li>蓝色</li>
+                <li>绿色</li>
+                <li>粉色</li>
+                <li>天蓝色</li>
+            </ul>
+        </div>
+        <div class="bottombox">
+            <div class="item active" style="background-color: red;"></div>
+            <div class="item" style="background-color: blue;"></div>
+            <div class="item" style="background-color: green;"></div>
+            <div class="item" style="background-color: pink;"></div>
+            <div class="item" style="background-color: skyblue;"></div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.nav>li').click(function() {
+                $(this).css({
+                    backgroundColor:'gray',
+                    color:'white'
+                }).siblings().css({
+                    backgroundColor:'',
+                    color:'black'
+                })
+                // $(this).siblings().css('background-color','')
+              const index= $(this).index()
+            //   console.log(index);
+            $('.item').eq(index).css('display','block')
+            $('.item').eq(index).siblings().css('display','none')
+            })
+        })
+    </script>
+</body>
+</html>
