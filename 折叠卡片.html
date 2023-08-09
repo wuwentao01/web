@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="min.js"></script>
+    <style>
+        * {
+				margin: 0;
+				padding: 0;
+			}
+			/* 大盒子 */
+			.king {
+				width: 1400px;
+				height: 200px;
+                margin: 100px auto;
+			}
+			/* ul去黑点 */
+			.king ul {
+				
+				list-style: none;
+				width: 100%;
+			}
+			/* li样式 */
+			.king ul li {
+				position: relative;
+				top: 0px;
+				left: 0px;
+				float: left;
+				width: 200px;
+				height: 200px;
+			}
+			/* 第一个显示大图li宽变成图片宽 */
+			.king ul .current {
+				width: 400px;
+			} 
+			/* 大图样式 用定位把大图和小图叠起来，使宽度还为大图的宽度 而不是大图+小图的宽度*/
+			.king ul li a .big {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 400px;
+				height: 200px;
+				display: none;
+                background-color: yellowgreen;
+			}
+			/* 小图样式 */
+			.king ul li a .small {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 200px;
+				height: 200px;
+                background-color: skyblue;
+			}
+			/* 第一个先显示大图 */
+			.king ul .current a .big {
+				display:inline-block;
+			}
+			/* 把第一个小图隐藏 */
+			.king ul .current a .small {
+				display: none;
+			}
+    </style>
+</head>
+<body>
+    <div class="king">
+        <ul>
+            <li class="current">
+                <a href="#">
+                    <img src="../img/四大美女/dc.jpg" class="small">1
+                    <img src="../img/四大美女/dc.jpg" class="big">2
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../img/四大美女/wzj.jpg" class="small">3
+                    <img src="../img/四大美女/wzj.jpg" class="big">4
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../img/四大美女/xx.jpg" class="small">5
+                    <img src="../img/四大美女/xx.jpg" class="big">6
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../img/四大美女/yyh.jpg" class="small">7
+                    <img src="../img/四大美女/yyh.jpg" class="big">8
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script>
+         $(function(){
+				// 鼠标经过
+				$(".king li").mouseenter(function(){
+					// 1.当前小li宽度变成400px，同时小图淡出，大图淡入
+					$(this).stop().animate({
+						width:400
+					    },200).find(".small").stop().fadeOut().siblings(".big").stop().fadeIn();
+					// 2.其余兄弟小li宽度为200px,小图淡入，大图淡出
+					$(this).siblings("li").stop().animate({
+						width:200
+					},200).find(".small").stop().fadeIn().siblings(".big").stop().fadeOut();
+				})
+			})
+    </script>
+</body>
+</html>
