@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <select name="" id="province" >
+            <option value="" class="province"></option>
+        </select>
+        <select name="" id="city" >
+            <option value="" class="city"></option>
+        </select>
+        <select name="" id="area" >
+            <option value="" class="area"></option>
+
+        </select>
+    </form>
+    <script src="axios/dist/axios.min.js"></script>
+    <script>
+        let pname=''
+        axios({url:'http://hmajax.itheima.net/api/province'}).then(result => {
+            // console.log(result);
+             pname=result.data.list[0]
+            // console.log(pname);
+            document.querySelector('.province').innerHTML=pname
+          return  axios({
+            url:'http://hmajax.itheima.net/api/city',
+          params:{pname}
+          }).then(result => {
+            // console.log(result);
+            const cname=result.data.list[0]
+            document.querySelector('.city').innerHTML=cname
+            return axios({url:'http://hmajax.itheima.net/api/area',params:{pname ,cname}}).then(resut => {
+                // console.log(result);
+            const aname=result.data.list[0]
+            document.querySelector('.area').innerHTML=aname
+            })
+          })
+        })
+    </script>
+</body>
+</html>
