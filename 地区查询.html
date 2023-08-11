@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        form {
+            width: 150px;
+            margin: 100px auto;
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            height: 30px;
+            outline: none;
+        }
+        button {
+            width: 150px;
+            height: 30px;
+            margin: 10px auto;
+        }
+        .box {
+            width: 200px;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+        li {
+            width: 200px;
+            height: 30px;
+            border-bottom: 1px solid black;
+            list-style: none;
+        }
+        li:nth-child(2n+1) {
+            background-color: pink;
+            color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="" id="" placeholder="省份" class="item1">
+        <input type="text" name="" id="" placeholder="城市" class="item2">
+        <button>查询省份城市地区</button>
+    </form>
+    <div class="box">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <script src="axios/dist/axios.min.js"></script>
+    <script>
+        document.querySelector('button').addEventListener('click',(e) => {
+            e.preventDefault()
+            let pname=document.querySelector('.item1').value
+            let cname=document.querySelector('.item2').value
+            // console.log(pName,cName);
+            axios({
+                url:'http://hmajax.itheima.net/api/area',
+                params:{
+                    pname,
+                    cname
+                }
+            }).then(result => {
+                // console.log(result);
+                // console.log(result.data.list);
+                let list =result.data.list
+                let theLi=list.map(areaName => ` <li>${areaName}</li>`).join('')
+                // console.log(theLi);
+                document.querySelector('.box ul').innerHTML=theLi
+            })
+        })
+    </script>
+</body>
+</html>
