@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>查询</button>
+    <ul></ul>
+    <script>
+        document.querySelector('button').addEventListener('click',() => {
+            const xhr=new XMLHttpRequest()
+            xhr.open('GET','http://hmajax.itheima.net/api/province')
+            xhr.send()
+            xhr.onload=function() {
+            if(xhr.status===200) {
+                const jsondata=JSON.parse(xhr.responseText)
+                render(jsondata)
+            }
+        }
+        })
+        
+        function render(jsondata) {
+            console.log(jsondata.list);
+            const html=jsondata.list.map(item => {
+              return  `
+              <li>
+                <div>${item}</div>
+                <li>
+                `
+            })
+            document.querySelector('ul').innerHTML=html.join('')
+        }
+    </script>
+</body>
+</html>
