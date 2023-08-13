@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <label for="upload">更换背景</label>
+   <input type="file" id="upload" style="display: none;">
+   <script src="axios/dist/axios.min.js"></script>
+   <script>
+    document.querySelector('.upload').addEventListener('change', e => {
+        const fd=new FormData()
+        fd.append('img',e.target.files[0])
+        axios({
+            url:'http://hmajax.itheima.net/api/uploadimg',
+            method:'post',
+            data:fd
+        }).then(result => {
+            const imgUrl=result.data.data.url
+            document.body.style.backgroundImage=`url(${imgUrl})`
+            localStorage.setItem('bgImg',imgUrl)
+        })
+    })
+    const bgUrl=localStorage.getItem('bgImg')
+    // bgUrl && document.body.style.backgroundImage =`url(${bgUrl})`
+   </script>
+</body>
+</html>
