@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <select name="" id="province" >
+            <option value="" class="province"></option>
+        </select>
+        <select name="" id="city" >
+            <option value="" class="city"></option>
+        </select>
+        <select name="" id="area" >
+            <option value="" class="area"></option>
+
+        </select>
+    </form>
+    <script src="axios/dist/axios.min.js"></script>
+    <script>
+        // async修饰函数
+       async function getData() {
+        const pObj= await axios({url:'http://hmajax.itheima.net/api/province'})
+        const pname=pObj.data.list[0]
+        const cObj=await axios({url:'http://hmajax.itheima.net/api/city',params:{pname}})
+        const cname=cObj.data.list[0]
+        const aObj=await axios({url:'http://hmajax.itheima.net/api/area',params:{pname,cname}})
+        const aname=cObj.data.list[0]
+        document.querySelector('.province').innerHTML=pname
+        document.querySelector('.city').innerHTML=cname
+        document.querySelector('.area').innerHTML=aname
+       }
+       getData()
+    </script>
+</body>
+</html>
