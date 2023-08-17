@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造函数
+        function Person() {
+            this.eyes=2
+            this.head=1
+        }
+        function Woman() {
+
+        }
+        // 继承
+        Woman.prototype = new Person()
+        // 指回原来的构造函数
+        Woman.prototype.constructor=Woman
+        // 给女人添加一个方法
+        Woman.prototype.baby = function() {
+            console.log('孩子');
+        }
+        const red = new Woman()
+        console.log(red);
+
+        function Man() {
+            
+        }
+        Man.prototype= new Person()
+        Man.prototype.constructor=Man
+        const pink = new Man()
+        console.log(pink);
+    </script>
+</body>
+</html>
