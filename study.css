@@ -1,0 +1,449 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    color: #f3f5f7;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #050505;
+}
+ .banner .big {
+    /* float: left; */
+    width: 1200px;
+    margin: 0 auto;
+    background: url(img/banner2.png) no-repeat top center;
+}
+.header {
+    width: 1200px;
+    height: 42px;
+    /* background-color: pink; */
+    margin: 0 auto;
+}
+.logo {
+    float: left;
+    width: 196px;
+    height: 42px;
+    /* background-color: purple; */
+}
+.nav {
+    float: left;
+    height: 42px;
+    margin-left: 55px;
+    /* background-color: red; */
+}
+.nav li {
+    float: left;
+}
+.nav li a {
+    display: block;
+    height: 42px;
+    font-size: 18px;
+    padding: 0px 12px;
+    line-height: 42px;
+    color: #050505;
+}
+.nav li a:hover {
+    border-bottom: 2px solid #00a4ff;
+}
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    background-color: #00a4ff;
+    margin-left: 50px;
+}
+.search input {
+    float: left;
+    width: 345px;
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #00a4ff;
+    border-right: 0px;
+    padding-left: 15px;
+    color: #cececf;
+}
+.search button {
+    width: 50px;
+    height: 42px;
+    background-color: #00a4ff;
+    color: gray;
+    border: #00a4ff;
+}
+.search button:hover {
+    color: #050505;
+}
+.uesr {
+    float: left;
+    width: 124px;
+    height: 42px;
+    margin-left: 100px;
+    line-height: 42px;
+}
+.uesr a {
+    color:gray ;
+    padding: 15px;
+}
+.uesr a:hover {
+    color: #050505;
+}
+.banner {
+    height: 421px;
+    background-color: #1c036c;
+}
+.subnav {
+    /* float: left; */
+    height: 421px;
+    width: 190px;
+    background:rgba(0, 0, 0, 0.3);
+}
+.banner .subnav li {
+    /* float: left; */
+    height: 45px;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 0px 20px;
+    color: #ffffff;
+}
+.banner .subnav li a {
+    color: #ffffff;
+}
+.banner .subnav li span {
+    float:right;
+}
+.banner .subnav li a:hover {
+    color: #00b4ff;
+}
+/* .course {
+    float: right;
+} */
+.goods {
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    line-height: 60px;
+}
+h3 {
+    float: left;
+    font-size: 16px;
+    color: #00a4ff;
+    margin: 0px 35px;
+}
+.goods .project ur li {
+    float: left;
+    /* margin-left: 35px; */
+    font-size: 16px;
+    color: #f3f5f7;
+}
+.goods .project li a {
+    border-left: 1px solid #bfbfbf;
+    padding:  0px 35px;
+}
+.goods .project li a:hover {
+    color: #00a4ff;
+}
+h4 {
+    float: right;
+    font-size: 14px;
+    color: #00a4ff;
+    margin-right: 35px;
+}
+.box {
+    width: 1200px;
+    height: 600px;
+    /* background-color: pink; */
+    margin:  0 auto;
+    margin-top: 35px;
+}
+.box .hd {
+    /* width: 1200px; */
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 35px;
+}
+ .hd span a:hover {
+    color:#00a4ff ;
+} 
+.box .hd span {
+    float: right;
+    font-size: 12px;
+    color: #a5a5a5;
+    margin:  12px 35px 22px 0px;
+}
+h5 {
+    float: left;
+    font-size: 20px;
+    color: #494949;
+}
+.xbox {
+    width: 1225px;
+    margin-top: 35px;
+    background-color: #fff;
+}
+.xbox li {
+    float: left;
+    width: 230px;
+    height: 270px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+.box .xbox li img {
+    width: 100%;
+}
+.box .xbox li img:hover {
+    box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.1);
+}
+.box2 {
+    width: 1250px;
+    height: 455px;
+    margin: 0 auto;
+    /* background-color: pink; */
+    margin-top: 50px;
+}
+.hd1 {
+    margin-bottom: 20px;
+    height: 42px;
+    line-height: 42px;
+}
+.hd1 h2 {
+    float: left;
+    font-size: 20px;
+    color: #494949;
+    margin-right: 355px;
+}
+.hd1 .list {
+    float: left;
+}
+.hd1 .list li {
+    float: left;
+    margin-right: 45px;
+    font-size: 16px;
+    color: #868686;
+}
+.hd1 .list li a:hover {
+    color:#00a4ff;
+}
+.hd1  span {
+    float: right;
+    font-size: 12px;
+    color: #a5a5a5;
+    margin:  12px 35px 0px 0px;
+}
+.hd1  span a:hover {
+    color:red;
+}
+.box3 {
+    width: 1250px;
+    height: 395px;
+    /* background-color: pink; */
+}
+.box3 .left {
+    float: left;
+    width: 230px;
+    height: 395px;
+    /* background-color: blue; */
+}
+.box3 .left img {
+    width: 100%;
+    height: 100%;
+}
+.box3 .right {
+    float: right;
+    width: 1000px;
+    height: 395px;
+    /* margin-right: 10px; */
+    /* background-color: red; */
+}
+.box3 .right .top {
+    height: 100px;
+    width: 1000px;
+    /* background-color: blue; */
+}
+.box3 .right .top img {
+    width: 100%;
+    height: 100%;
+}
+.box3 .right .last {
+    margin-top: 25px;
+}
+.box3 .right .last li {
+    float: left;
+    width: 230px;
+    height: 270px;
+    padding-right: 20px;
+    /* background-color: blue; */
+}
+.box3 .right .last li img:hover {
+    box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.1);
+}
+.box4 {
+    width: 1250px;
+    height: 455px;
+    margin: 0 auto;
+    /* background-color: pink; */
+    margin-top: 50px;
+}
+.hd2 {
+    margin-bottom: 20px;
+    height: 42px;
+    line-height: 42px;
+}
+.hd2 h2 {
+    float: left;
+    font-size: 20px;
+    color: #494949;
+    margin-right: 355px;
+}
+.hd2 .list {
+    float: left;
+}
+.hd2 .list li {
+    float: left;
+    margin-right: 45px;
+    font-size: 16px;
+    color: #868686;
+}
+.hd2 .list li a:hover {
+    color:#00a4ff;
+}
+.hd2  span {
+    float: right;
+    font-size: 12px;
+    color: #a5a5a5;
+    margin:  12px 35px 0px 0px;
+}
+.hd2  span a:hover {
+    color:red;
+}
+.box3 {
+    width: 1250px;
+    height: 395px;
+    /* background-color: pink; */
+}
+.box5 .left2 {
+    float: left;
+    width: 230px;
+    height: 395px;
+    /* background-color: blue; */
+}
+.box5 .left2 img {
+    width: 100%;
+    height: 100%;
+}
+.box5 .right2 {
+    float: right;
+    width: 1000px;
+    height: 395px;
+    /* margin-right: 10px; */
+    /* background-color: red; */
+}
+.box5 .right2 .top2 {
+    height: 100px;
+    width: 1000px;
+    /* background-color: blue; */
+}
+.box5 .right2 .top2 img {
+    width: 100%;
+    height: 100%;
+}
+.box5 .right2 .last2 {
+    margin-top: 25px;
+}
+.box5 .right2 .last2 li {
+    float: left;
+    width: 230px;
+    height: 270px;
+    padding-right: 20px;
+    /* background-color: blue; */
+}
+.box5 .right2 .last2 li img:hover {
+    box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.1);
+}
+.box6 {
+    float: left;
+    width: 1250px;
+    height: 180px;
+    margin: 0 auto;
+    /* background-color: pink; */
+    /* text-align: center; */
+}
+.box6 .box7 {
+    float: left;
+    width: 475px;
+    height: 180px;
+    /* background-color: red; */
+}
+.box6  .box7 .left3 {
+    width: 195px;
+    height: 75px;
+    padding-top: 35px;
+    padding-left: 10px;
+    /* margin: 35px 0px 0px 10px; */
+    /* background-color: red; */
+}
+h5 {
+    font-size: 12px;
+    color: #666666;
+}
+.box6 .left4 {
+    text-align: left;
+}
+ .left4 button {
+    width: 120px;
+    height: 35px;
+    color: #00a4ff;
+    border: 1px solid #00a4ff;
+    margin-top: 20px;
+}
+.box6 .box8 {
+    float: right;
+    width: 735px;
+    height: 180px;
+    /* background-color: red; */
+}
+.right3 {
+    float: left;
+    margin-left: 190px;
+}
+.right3 h1 {
+    margin: 15px 0px;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+}
+.box6 .box8 li {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.right4 {
+    float: left;
+    margin-left: 150px;
+}
+.right4 h1 {
+    margin: 15px 0px;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal; 
+}
+.right5 {
+    float:left;
+    margin-left: 100px;
+}
+.right5 h1 {
+    margin: 15px 0px;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal; 
+}
+.box6 li a:hover {
+    color: #00a4ff;
+}
+
