@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+        }
+        thead {
+            background-color: pink;
+        }
+        .color {
+            background-color: brown;
+        }
+        tbody {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <table border="5"  cellspacing="0">
+        <caption>21级软件工程课表</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>周一</th>
+            <th>周二</th>
+            <th>周三</th>
+            <th>周四</th>
+            <th>周五</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2" class="color">上午</td>
+            <td>数据结构</td>
+            <td>web前端开发技术</td>
+            <td>网络通信原理</td>
+            <td>毛概</td>
+            <td>web前端开发技术</td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <td>模电</td>
+            <td>数电</td>
+            <td></td>
+            <td>英语</td>
+            <td>毛概</td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="color">下午</td>
+            <td rowspan="2">数据库</td>
+            <td>英语</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <!-- <td></td> -->
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="color">晚上</td>
+            <td></td>
+            <td>通信原理</td>
+            <td>体育</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+</html>
