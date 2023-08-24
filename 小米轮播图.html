@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .banner {
+            width: 1000px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+            /* background-color: pink; */
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+        }
+        .bannerLeft,
+        .bannerRight {
+            position: absolute;
+            top:180px;
+            width: 50px;
+            height: 50px;
+            font-size: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            opacity: .5;
+            cursor: pointer;
+            /* background-color: grey; */
+        }
+        .bannerLeft:hover {
+            background-color: gainsboro;
+        }
+        .bannerRight:hover {
+            background-color: gainsboro;
+        }
+        .bannerLeft {
+            left: 0;
+        }
+        .bannerRight {
+            right: 0;
+        }
+        .bannerBottom {
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+        }
+        .bannerBottom li {
+            float: left;
+            list-style: none;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: gainsboro;
+        }
+        .bannerBottom .active {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img src="sc.html/lb1.jpg" alt="">
+        <div class="bannerLeft">&lt;</div>
+        <div class="bannerRight">&gt;</div>
+        <div class="bannerBottom">
+            <ul>
+                <li class="active" data-id="0"></li>
+                <li data-id="1"></li>
+                <li data-id="2"></li>
+                <li data-id="3"></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const arr = [
+            {url:'sc.html/lb1.jpg'},
+            {url:'sc.html/lb2.webp'},
+            {url:'sc.html/lb3.webp'},
+            {url:'sc.html/lb4.webp'},
+        ]
+        const ul=document.querySelector('.bannerBottom ul')
+        // console.log(ul);
+        const banner = document.querySelector('.banner')
+        const img = document.querySelector('img')
+        // 获取左键
+        const bannerLeft = document.querySelector('.bannerLeft')
+        // 获取右键
+        const bannerRight = document.querySelector('.bannerRight')
+        let i = 0
+        // 左键点击事件
+        bannerLeft.addEventListener('click',function() {
+            i--
+            // console.log(i)
+            if(i<0) {
+                i=arr.length-1
+            }
+            // console.log(i)
+            img.src=arr[i].url
+            document.querySelector('.bannerBottom .active').classList.remove('active')
+            document.querySelector(`.bannerBottom li:nth-child(${i + 1})`).classList.add('active')
+        })
+        // 右键点击事件
+        bannerRight.addEventListener('click',function() {
+            i++
+            // console.log(i)
+            if(i>=arr.length) {
+                i=0
+            }
+            // console.log(i)
+            img.src=arr[i].url
+            document.querySelector('.bannerBottom .active').classList.remove('active')
+            document.querySelector(`.bannerBottom li:nth-child(${i + 1})`).classList.add('active')
+        })
+        // 自动播放器
+       let zd = setInterval(function() {
+            bannerRight.click()
+        },3000)
+        // 鼠标进入
+       banner.addEventListener('mouseenter',function() {
+        clearInterval(zd)
+       })
+    //    鼠标离开
+    banner.addEventListener('mouseleave',function() {
+        // 先关
+        clearInterval(zd)
+        // 再开
+        zd = setInterval(function() {
+            bannerRight.click()
+        },3000)
+       })
+       ul.addEventListener('click',function(e) {
+        // console.log(e.target.dataset.id);
+        img.src=arr[e.target.dataset.id].url
+        document.querySelector('.bannerBottom .active').classList.remove('active')
+        e.target.classList.add('active')
+       })
+    </script>
+</body>
+</html>
